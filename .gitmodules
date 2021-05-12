@@ -1,0 +1,6 @@
+[submodule "stocks-api"]
+	path = stocks-api
+	url = git@github.com:gobaldia/stocks-api.git
+[submodule "encrypter-api"]
+	path = encrypter-api
+	url = git@github.com:gobaldia/encrypter-api.git
