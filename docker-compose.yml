@@ -1,0 +1,29 @@
+version: "3.9"
+services:
+  stocks-api:
+    container_name: stocks-api
+    image: "stocks-api"
+    restart: always
+    environment: 
+      - ALPHA_VANTAGE_API_KEY=MBZJQ3JFFZRJ4AMT
+      - ENCRYPTER_API=http://encrypter-api:3000
+    depends_on: 
+      - encrypter-api
+    ports:
+      - "3000:3000"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://stocks-api:3000/ping"]
+      interval: 10s
+      timeout: 1s
+      retries: 3
+  encrypter-api:
+    container_name: encrypter-api
+    image: "encrypter-api"
+    restart: always
+    environment: 
+      - SECRET_KEY=5up3rs3cr3t5up3rs3cr3t5up3rs3cr3
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://encrypter-api:3000/ping"]
+      interval: 10s
+      timeout: 1s
+      retries: 3
